@@ -1,0 +1,2 @@
+build --features=swift.use_c_modules --features=swift.emit_c_module --host_features=swift.use_c_modules --host_features=swift.emit_c_module
+build --features=swift.headers_always_action_inputs

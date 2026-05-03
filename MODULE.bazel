@@ -1,0 +1,44 @@
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+bazel_dep(
+    name = "rules_apple",
+    version = "4.5.3",
+    repo_name = "build_bazel_rules_apple"
+)
+
+git_override(
+    module_name = "rules_apple",
+    remote = "https://github.com/erneestoc/rules_apple.git",
+    commit = "04d00607f52893994e7eee0251e8e9a75ac57f1e"
+)
+
+
+bazel_dep(
+    name = "rules_swift",
+    version = "3.6.1",
+    repo_name = "build_bazel_rules_swift"
+)
+
+git_override(
+    module_name = "rules_swift",
+    remote = "https://github.com/bazelbuild/rules_swift.git",
+    commit = "0f0cce148a1bcfdd28c3ebad99bd9979e7c4cbbd"
+)
+
+bazel_dep(
+    name = "apple_support",
+    version = "2.5.4",
+    repo_name = "build_bazel_apple_support"
+)
+
+http_archive(
+    name = "google_sign_in",
+    urls = [
+        "https://dl.google.com/dl/firebase/ios/carthage/12.2.0/GoogleSignIn-31b2e32d1dadbaa8.zip"
+    ],
+    build_file = "//GoogleSignIn:BUILD"
+)
+
+system_sdk = use_extension("@build_bazel_rules_swift//swift:extensions.bzl", "system_sdk")
+system_sdk.configure_sdks(include_all = True)
+use_repo(system_sdk, "system_sdk")

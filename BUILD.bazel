@@ -1,0 +1,29 @@
+load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
+load("@build_bazel_rules_swift//swift:swift_library.bzl", "swift_library")
+load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
+
+swift_library(name = "Repro.library", deps = ["@google_sign_in//:GTMAppAuth"], srcs = ["Repro.swift"])
+
+apple_bundle_version(
+    name = "Version",
+    build_version = "0.0.1",
+    short_version_string = "0.0.1",
+    visibility = ["//visibility:public"]
+)
+
+ios_application(
+    name = "Repro",
+    app_icons = None,
+    launch_storyboard = None,
+    bundle_name = "Repro",
+    bundle_id = "com.repro",
+    provisioning_profile = None,
+    minimum_os_version = "17.0",
+    version = ":Version",
+    visibility = ["//visibility:public"],
+    strings = [],
+    entitlements = None,
+    infoplists = ["Info.plist"],
+    families = ["iphone"],
+    deps = [":Repro.library"]
+)
