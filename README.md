@@ -1,4 +1,4 @@
-Claude's theory:
+## Claude's theory:
 
 ### Symptom
 
