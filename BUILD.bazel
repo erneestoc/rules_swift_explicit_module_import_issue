@@ -1,3 +1,4 @@
+load("@build_bazel_rules_apple//apple:apple.bzl", "apple_static_xcframework_import")
 load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
 load("@build_bazel_rules_swift//swift:swift_library.bzl", "swift_library")
 load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
@@ -26,4 +27,51 @@ ios_application(
     infoplists = ["Info.plist"],
     families = ["iphone"],
     deps = [":Repro.library"]
+)
+
+# --- RxCocoa link-error repro ---
+# RxSwift / RxRelay / RxCocoa built via Scripts/build-rx-xcframeworks.sh
+# from the upstream RxSwift.xcodeproj with Carthage + instacart-ios flags:
+# BUILD_LIBRARY_FOR_DISTRIBUTION=YES + MACH_O_TYPE=staticlib.
+# Linking //:ReproProxy fails on the generic
+# DelegateProxy.init(parentObject:delegateProxy:) symbol.
+
+apple_static_xcframework_import(
+    name = "RxSwift",
+    xcframework_imports = glob(["xcframeworks-source/RxSwift.xcframework/**"]),
+    has_swift = True,
+)
+
+apple_static_xcframework_import(
+    name = "RxRelay",
+    xcframework_imports = glob(["xcframeworks-source/RxRelay.xcframework/**"]),
+    has_swift = True,
+    deps = [":RxSwift"],
+)
+
+apple_static_xcframework_import(
+    name = "RxCocoa",
+    xcframework_imports = glob(["xcframeworks-source/RxCocoa.xcframework/**"]),
+    has_swift = True,
+    deps = [
+        ":RxRelay",
+        ":RxSwift",
+    ],
+)
+
+swift_library(
+    name = "Proxy.library",
+    srcs = ["Proxy.swift"],
+    deps = [":RxCocoa"],
+)
+
+ios_application(
+    name = "ReproProxy",
+    bundle_name = "ReproProxy",
+    bundle_id = "com.repro.proxy",
+    minimum_os_version = "17.0",
+    version = ":Version",
+    infoplists = ["Info.plist"],
+    families = ["iphone"],
+    deps = [":Proxy.library"],
 )

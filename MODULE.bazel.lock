@@ -437,7 +437,7 @@
     },
     "@@rules_swift+//swift:extensions.bzl%system_sdk": {
       "general": {
-        "bzlTransitiveDigest": "FGW0qzfx4uVkOpXwAAokMVf0I2dI8UNS4NCS0U6OuNo=",
+        "bzlTransitiveDigest": "jl/9QFIZSMqJvvlQCzfXW/aTHQ4ixJDDhJQ+eagx86Y=",
         "usagesDigest": "vJMc/aBArwjog4hd8WAZhShnYnxKSp/og+4kgk1Gy7A=",
         "recordedInputs": [
           "ENV:DEVELOPER_DIR \\0",
