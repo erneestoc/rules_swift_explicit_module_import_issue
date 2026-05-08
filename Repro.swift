@@ -21,9 +21,14 @@ var hola: some View {
             longitudinalMeters: 200
         )),
         annotationItems: [
-            MapPin(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
+            Pin(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0))
         ]
     ) { pin in
-        MapMarker(coordinate: pin.coordinate, tint: .green)
+        MapMarker(coordinate: CLLocationCoordinate2D(latitude: 0, longitude: 0), tint: .green)
     }
+}
+
+struct Pin: Identifiable {
+	let id = "1"
+	let coordinate: CLLocationCoordinate2D
 }
