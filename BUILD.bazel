@@ -2,7 +2,11 @@ load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
 load("@build_bazel_rules_swift//swift:swift_library.bzl", "swift_library")
 load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
 
-swift_library(name = "Repro.library", deps = ["@google_sign_in//:GTMAppAuth"], srcs = ["Repro.swift"])
+swift_library(name = "Repro.library", deps = [
+    "@system_sdk//:UIKit",
+    "@system_sdk//:MapKit",
+    "@system_sdk//:SwiftUI",
+], srcs = ["Repro.swift"])
 
 apple_bundle_version(
     name = "Version",

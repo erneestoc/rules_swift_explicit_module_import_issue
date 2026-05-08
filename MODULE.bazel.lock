@@ -440,8 +440,8 @@
         "bzlTransitiveDigest": "FGW0qzfx4uVkOpXwAAokMVf0I2dI8UNS4NCS0U6OuNo=",
         "usagesDigest": "vJMc/aBArwjog4hd8WAZhShnYnxKSp/og+4kgk1Gy7A=",
         "recordedInputs": [
-          "ENV:DEVELOPER_DIR \\0",
-          "ENV:XCODE_VERSION \\0",
+          "ENV:DEVELOPER_DIR /Applications/Xcode_26.4.1.app/Contents/Developer",
+          "ENV:XCODE_VERSION 17E202",
           "REPO_MAPPING:bazel_features+,bazel_features_globals bazel_features++version_extension+bazel_features_globals",
           "REPO_MAPPING:bazel_features+,bazel_features_version bazel_features++version_extension+bazel_features_version",
           "REPO_MAPPING:rules_swift+,bazel_features bazel_features+",
@@ -453,11 +453,11 @@
             "repoRuleId": "@@rules_swift+//tools/explicit_modules:xcode_locator_repo.bzl%xcode_locator_repo",
             "attributes": {}
           },
-          "system_sdk_xcode_26_4_0_17E192": {
+          "system_sdk_xcode_26_4_1_17E202": {
             "repoRuleId": "@@rules_swift+//tools/explicit_modules:xcode_explicit_module_repo.bzl%xcode_explicit_module_repo",
             "attributes": {
               "sdks": [],
-              "xcode_version": "26.4.0.17E192",
+              "xcode_version": "26.4.1.17E202",
               "xcode_locator": "@@rules_swift++system_sdk+system_sdk_xcode_locator//:xcode-locator-bin"
             }
           },
@@ -465,9 +465,9 @@
             "repoRuleId": "@@rules_swift+//tools/explicit_modules:xcode_explicit_module_hub_repo.bzl%xcode_explicit_module_hub_repo",
             "attributes": {
               "xcode_versions": [
-                "26.4.0.17E192"
+                "26.4.1.17E202"
               ],
-              "default_manifest": "@@rules_swift++system_sdk+system_sdk_xcode_26_4_0_17E192//:module_names.json"
+              "default_manifest": "@@rules_swift++system_sdk+system_sdk_xcode_26_4_1_17E202//:module_names.json"
             }
           }
         }

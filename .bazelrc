@@ -1,2 +1,12 @@
 build --features=swift.use_c_modules --features=swift.emit_c_module --host_features=swift.use_c_modules --host_features=swift.emit_c_module
 build --features=swift.headers_always_action_inputs
+common --spawn_strategy=sandboxed,worker,local
+common --worker_sandboxing
+
+startup --host_jvm_args=-Xdock:name="/Applications/Xcode_26.4.1.app/Contents/Developer"
+build --xcode_version=17E202
+build --repo_env=XCODE_VERSION=17E202
+build --repo_env=DEVELOPER_DIR="/Applications/Xcode_26.4.1.app/Contents/Developer"
+common --ios_simulator_version=26.4
+common --ios_simulator_device="iPhone 17"
+
