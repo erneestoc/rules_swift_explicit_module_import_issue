@@ -8,8 +8,8 @@ bazel_dep(
 
 git_override(
     module_name = "rules_apple",
-    remote = "https://github.com/erneestoc/rules_apple.git",
-    commit = "04d00607f52893994e7eee0251e8e9a75ac57f1e"
+    remote = "https://github.com/bazelbuild/rules_apple.git",
+    commit = "a73e06786571c29ebf74e736dde6ad8f57bac312"
 )
 
 
@@ -22,8 +22,9 @@ bazel_dep(
 git_override(
     module_name = "rules_swift",
     remote = "https://github.com/bazelbuild/rules_swift.git",
-    commit = "0f0cce148a1bcfdd28c3ebad99bd9979e7c4cbbd"
+    commit = "b299f0ca1563a393f4908ccc8c92c69cafce0e80"
 )
+
 
 bazel_dep(
     name = "apple_support",

@@ -1,7 +1,7 @@
 build --features=swift.use_c_modules --features=swift.emit_c_module --host_features=swift.use_c_modules --host_features=swift.emit_c_module
 build --features=swift.headers_always_action_inputs
-common --spawn_strategy=sandboxed,worker,local
-common --worker_sandboxing
+build --features=swift.use_explicit_swift_module_map
+
 
 startup --host_jvm_args=-Xdock:name="/Applications/Xcode_26.4.1.app/Contents/Developer"
 build --xcode_version=17E202

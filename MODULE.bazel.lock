@@ -437,8 +437,8 @@
     },
     "@@rules_swift+//swift:extensions.bzl%system_sdk": {
       "general": {
-        "bzlTransitiveDigest": "FGW0qzfx4uVkOpXwAAokMVf0I2dI8UNS4NCS0U6OuNo=",
-        "usagesDigest": "vJMc/aBArwjog4hd8WAZhShnYnxKSp/og+4kgk1Gy7A=",
+        "bzlTransitiveDigest": "67a0UNo4xwv9ts749N1hoeGrbNb5A/kPq0+5vMsjeqg=",
+        "usagesDigest": "0ASzERvWk7zXCSrBH1iKkJ7QHF80XGkT1XgXWJ6E+w8=",
         "recordedInputs": [
           "ENV:DEVELOPER_DIR /Applications/Xcode_26.4.1.app/Contents/Developer",
           "ENV:XCODE_VERSION 17E202",
@@ -446,7 +446,8 @@
           "REPO_MAPPING:bazel_features+,bazel_features_version bazel_features++version_extension+bazel_features_version",
           "REPO_MAPPING:rules_swift+,bazel_features bazel_features+",
           "REPO_MAPPING:rules_swift+,bazel_skylib bazel_skylib+",
-          "REPO_MAPPING:rules_swift+,bazel_tools bazel_tools"
+          "REPO_MAPPING:rules_swift+,bazel_tools bazel_tools",
+          "FILE:@@rules_swift+//tools/explicit_modules/scan.py f89ee9528bc7e8ae7282f7564e2edd1604294140fa2eceb1406c278a15fd0a59"
         ],
         "generatedRepoSpecs": {
           "system_sdk_xcode_locator": {
@@ -456,6 +457,7 @@
           "system_sdk_xcode_26_4_1_17E202": {
             "repoRuleId": "@@rules_swift+//tools/explicit_modules:xcode_explicit_module_repo.bzl%xcode_explicit_module_repo",
             "attributes": {
+              "exclude_modules": {},
               "sdks": [],
               "xcode_version": "26.4.1.17E202",
               "xcode_locator": "@@rules_swift++system_sdk+system_sdk_xcode_locator//:xcode-locator-bin"
