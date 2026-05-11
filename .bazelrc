@@ -1,7 +1,23 @@
-build --features=swift.use_c_modules --features=swift.emit_c_module --host_features=swift.use_c_modules --host_features=swift.emit_c_module
-build --features=swift.headers_always_action_inputs
+build --features=swift.enable_batch_mode
+build --features=swift.cacheable_swiftmodules
+build --features=swift.coverage_prefix_map
+build --features=swift.debug_prefix_map
+build --features=swift.file_prefix_map
+build --features=swift.internalize_at_link
+build --features=swift.opt_uses_wmo
+build --features=swift.use_global_module_cache
+build --features=swift.objc_link_flag
+build --features=swift.remap_xcode_path
+build --features=swift.index_while_building
+build --features=swift.use_global_index_store
+build --features=swift.split_derived_files_generation
+build --features=swift.skip_function_bodies_for_derived_files
+build --features=swift.use_c_modules --host_features=swift.use_c_modules
+build --features=swift.emit_c_module --host_features=swift.emit_c_module
+build --features=-swift.add_default_precompiled_modules --host_features=-swift.add_default_precompiled_modules
 build --features=swift.use_explicit_swift_module_map
-
+build --features=swift.headers_always_action_inputs
+build --features=swift.fix_dotted_self_qualifier_lookup
 
 startup --host_jvm_args=-Xdock:name="/Applications/Xcode_26.4.1.app/Contents/Developer"
 build --xcode_version=17E202
@@ -9,4 +25,3 @@ build --repo_env=XCODE_VERSION=17E202
 build --repo_env=DEVELOPER_DIR="/Applications/Xcode_26.4.1.app/Contents/Developer"
 common --ios_simulator_version=26.4
 common --ios_simulator_device="iPhone 17"
-

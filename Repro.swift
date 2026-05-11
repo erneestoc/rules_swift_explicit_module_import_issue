@@ -1,6 +1,7 @@
 import UIKit
 import SwiftUI
 import MapKit
+import Leaf
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -9,7 +10,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         configurationForConnecting connectingSceneSession: UISceneSession,
         options: UIScene.ConnectionOptions
     ) -> UISceneConfiguration {
-        UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
+        let leaf = Leaf()
+        return UISceneConfiguration(name: nil, sessionRole: connectingSceneSession.role)
     }
 }
 

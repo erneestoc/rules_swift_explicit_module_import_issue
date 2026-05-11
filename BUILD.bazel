@@ -1,34 +1,77 @@
 load("@build_bazel_rules_apple//apple:ios.bzl", "ios_application")
 load("@build_bazel_rules_swift//swift:swift_library.bzl", "swift_library")
 load("@build_bazel_rules_apple//apple:versioning.bzl", "apple_bundle_version")
+load("@rules_cc//cc:objc_library.bzl", "objc_library")
 
-swift_library(name = "Repro.library", deps = [
-    "@system_sdk//:UIKit",
-    "@system_sdk//:MapKit",
-    "@system_sdk//:SwiftUI",
-    "@system_sdk//:_MapKit_SwiftUI",
-], srcs = ["Repro.swift"])
+swift_library(
+    name = "FoundationOverlay",
+    srcs = ["FoundationOverlay.swift"],
+    deps = ["@system_sdk//:Foundation"],
+)
+
+objc_library(
+    name = "MixedFoundationRuntime",
+    module_name = "MixedFoundationRuntime",
+    srcs = ["MixedFoundationRuntime/MixedFoundationRuntime.m"],
+    hdrs = ["MixedFoundationRuntime/include/MixedFoundationRuntime.h"],
+    includes = ["MixedFoundationRuntime/include"],
+    sdk_frameworks = ["Foundation"],
+)
+
+swift_library(
+    name = "MixedFoundationConsumer",
+    srcs = ["MixedFoundationConsumer.swift"],
+    deps = [
+        ":MixedFoundationRuntime",
+        "@system_sdk//:Foundation",
+    ],
+)
+
+swift_library(
+    name = "Bottom",
+    srcs = ["Bottom.swift"],
+    deps = ["@system_sdk//:UIKit"],
+)
+
+swift_library(
+    name = "Mid",
+    srcs = ["Mid.swift"],
+    deps = [":Bottom", "@system_sdk//:UIKit"],
+)
+
+swift_library(
+    name = "Leaf",
+    srcs = ["Leaf.swift"],
+    deps = [":Mid"],
+)
+
+swift_library(
+    name = "Repro.library",
+    srcs = ["Repro.swift"],
+    deps = [
+        "@system_sdk//:UIKit",
+        "@system_sdk//:MapKit",
+        "@system_sdk//:SwiftUI",
+        "@system_sdk//:_MapKit_SwiftUI",
+        ":Leaf",
+    ],
+)
 
 apple_bundle_version(
     name = "Version",
     build_version = "0.0.1",
     short_version_string = "0.0.1",
-    visibility = ["//visibility:public"]
+    visibility = ["//visibility:public"],
 )
 
 ios_application(
     name = "Repro",
-    app_icons = None,
-    launch_storyboard = None,
     bundle_name = "Repro",
     bundle_id = "com.repro",
-    provisioning_profile = None,
     minimum_os_version = "17.0",
     version = ":Version",
     visibility = ["//visibility:public"],
-    strings = [],
-    entitlements = None,
     infoplists = ["Info.plist"],
     families = ["iphone"],
-    deps = [":Repro.library"]
+    deps = [":Repro.library"],
 )

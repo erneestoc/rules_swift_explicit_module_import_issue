@@ -180,6 +180,43 @@
   },
   "selectedYankedVersions": {},
   "moduleExtensions": {
+    "@@protobuf+//python/dist:system_python.bzl%system_python_extension": {
+      "general": {
+        "bzlTransitiveDigest": "pmsA+awieucfllLc2n7k8xEoPp0i5LF9Hw6mGX0cqSQ=",
+        "usagesDigest": "A+RWmbKdBBwZcBbNGNvfPbqG2vYZRjVrFp6x1iRUrAk=",
+        "recordedInputs": [],
+        "generatedRepoSpecs": {
+          "system_python": {
+            "repoRuleId": "@@protobuf+//python/dist:system_python.bzl%system_python",
+            "attributes": {
+              "minimum_python_version": "3.9"
+            }
+          }
+        }
+      }
+    },
+    "@@pybind11_bazel+//:internal_configure.bzl%internal_configure_extension": {
+      "general": {
+        "bzlTransitiveDigest": "b+RP7Sgl8KN0VHamrgTqzGLuYPcQ/Mo4ptNkkHUIIlA=",
+        "usagesDigest": "D1r3lfzMuUBFxgG8V6o0bQTLMk3GkaGOaPzw53wrwyw=",
+        "recordedInputs": [
+          "REPO_MAPPING:pybind11_bazel+,bazel_tools bazel_tools",
+          "FILE:@@pybind11_bazel+//MODULE.bazel e6f4c20442eaa7c90d7190d8dc539d0ab422f95c65a57cc59562170c58ae3d34"
+        ],
+        "generatedRepoSpecs": {
+          "pybind11": {
+            "repoRuleId": "@@bazel_tools//tools/build_defs/repo:http.bzl%http_archive",
+            "attributes": {
+              "build_file": "@@pybind11_bazel+//:pybind11-BUILD.bazel",
+              "strip_prefix": "pybind11-2.12.0",
+              "urls": [
+                "https://github.com/pybind/pybind11/archive/v2.12.0.zip"
+              ]
+            }
+          }
+        }
+      }
+    },
     "@@rules_kotlin+//src/main/starlark/core/repositories:bzlmod_setup.bzl%rules_kotlin_extensions": {
       "general": {
         "bzlTransitiveDigest": "Ga4z8lQy1YQ5rAMy+dOl0dqcCEBnYNCXku8x3YQmDZI=",
@@ -437,8 +474,8 @@
     },
     "@@rules_swift+//swift:extensions.bzl%system_sdk": {
       "general": {
-        "bzlTransitiveDigest": "67a0UNo4xwv9ts749N1hoeGrbNb5A/kPq0+5vMsjeqg=",
-        "usagesDigest": "0ASzERvWk7zXCSrBH1iKkJ7QHF80XGkT1XgXWJ6E+w8=",
+        "bzlTransitiveDigest": "ScDMn4SnCeODPE0vaACWVUso/Oc7/DKiuug6pYiKRSE=",
+        "usagesDigest": "J0WkepD+fyoh4dXN8lrRWyEnCDJMVNqUxBJMtNYbh88=",
         "recordedInputs": [
           "ENV:DEVELOPER_DIR /Applications/Xcode_26.4.1.app/Contents/Developer",
           "ENV:XCODE_VERSION 17E202",
@@ -447,7 +484,7 @@
           "REPO_MAPPING:rules_swift+,bazel_features bazel_features+",
           "REPO_MAPPING:rules_swift+,bazel_skylib bazel_skylib+",
           "REPO_MAPPING:rules_swift+,bazel_tools bazel_tools",
-          "FILE:@@rules_swift+//tools/explicit_modules/scan.py f89ee9528bc7e8ae7282f7564e2edd1604294140fa2eceb1406c278a15fd0a59"
+          "FILE:@@rules_swift+//tools/explicit_modules/scan.py 766faeef7d6db7d664930319193a7ff1e2e1dd07c601dae7664a44826cf97e92"
         ],
         "generatedRepoSpecs": {
           "system_sdk_xcode_locator": {
@@ -458,7 +495,11 @@
             "repoRuleId": "@@rules_swift+//tools/explicit_modules:xcode_explicit_module_repo.bzl%xcode_explicit_module_repo",
             "attributes": {
               "exclude_modules": {},
-              "sdks": [],
+              "sdks": [
+                "MacOSX",
+                "iPhoneOS",
+                "iPhoneSimulator"
+              ],
               "xcode_version": "26.4.1.17E202",
               "xcode_locator": "@@rules_swift++system_sdk+system_sdk_xcode_locator//:xcode-locator-bin"
             }

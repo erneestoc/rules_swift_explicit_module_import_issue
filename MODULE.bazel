@@ -12,7 +12,6 @@ git_override(
     commit = "a73e06786571c29ebf74e736dde6ad8f57bac312"
 )
 
-
 bazel_dep(
     name = "rules_swift",
     version = "3.6.1",
@@ -21,16 +20,17 @@ bazel_dep(
 
 git_override(
     module_name = "rules_swift",
-    remote = "https://github.com/bazelbuild/rules_swift.git",
-    commit = "b299f0ca1563a393f4908ccc8c92c69cafce0e80"
+    remote = "https://github.com/erneestoc/rules_swift.git",
+    commit = "d797b36ed31c9d5704731435b0b0e3606ee57a16"
 )
-
 
 bazel_dep(
     name = "apple_support",
     version = "2.5.4",
     repo_name = "build_bazel_apple_support"
 )
+
+bazel_dep(name = "rules_cc", version = "0.2.15")
 
 http_archive(
     name = "google_sign_in",
@@ -41,5 +41,5 @@ http_archive(
 )
 
 system_sdk = use_extension("@build_bazel_rules_swift//swift:extensions.bzl", "system_sdk")
-system_sdk.configure_sdks(include_all = True)
+system_sdk.configure_sdks(names = ["iPhoneOS", "iPhoneSimulator"])
 use_repo(system_sdk, "system_sdk")
