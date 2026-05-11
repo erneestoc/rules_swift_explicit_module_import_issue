@@ -40,6 +40,15 @@ http_archive(
     build_file = "//GoogleSignIn:BUILD"
 )
 
+http_archive(
+    name = "RxSwift",
+    urls = [
+        "https://github.com/ReactiveX/RxSwift/archive/refs/tags/6.10.2.zip"
+    ],
+    build_file = "//RxSwift:BUILD",
+    strip_prefix = "RxSwift-6.10.2"
+)
+
 system_sdk = use_extension("@build_bazel_rules_swift//swift:extensions.bzl", "system_sdk")
 system_sdk.configure_sdks(names = ["iPhoneOS", "iPhoneSimulator"])
 use_repo(system_sdk, "system_sdk")

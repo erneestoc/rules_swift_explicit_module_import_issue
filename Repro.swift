@@ -1,6 +1,7 @@
 import UIKit
 import SwiftUI
 import MapKit
+import RxSwift
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate {

@@ -7,6 +7,8 @@ swift_library(name = "Repro.library", deps = [
     "@system_sdk//:MapKit",
     "@system_sdk//:SwiftUI",
     "@system_sdk//:_MapKit_SwiftUI",
+    "@RxSwift//:RxSwift",
+    "@RxSwift//:RxCocoa"
 ], srcs = ["Repro.swift"])
 
 apple_bundle_version(
